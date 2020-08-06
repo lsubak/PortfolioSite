@@ -1,0 +1,33 @@
+﻿/* default site theme */
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0px;
+    min-height: 100%;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+    grid-template-rows: 100%;
+    width: 100vw;
+    height: 100vh;
+}
+
+.menu-container {
+    grid-column: 1;
+    grid-row: 1;
+    background-color: #88d1d0;
+}
+
+.menu-item {
+    margin: 5px;
+}
+
+.logo {
+    width: 180px;
+}

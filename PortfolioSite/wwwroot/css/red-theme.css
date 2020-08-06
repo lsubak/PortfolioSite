@@ -1,0 +1,32 @@
+﻿html {
+    height: 100%;
+}
+
+body {
+    margin: 0px;
+    min-height: 100%;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 30% 70%;
+    width: 100vw;
+    height: 100vh;
+}
+
+.menu-container {
+    grid-column: 1;
+    grid-row: 1;
+    background-color: red;
+}
+
+.menu-item {
+    margin: 5px;
+}
+
+.logo {
+    width: 180px;
+    fill: pink;
+}
