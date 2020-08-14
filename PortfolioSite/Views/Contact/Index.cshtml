@@ -1,1 +1,12 @@
-﻿<p>Hello I am contact page</p>
+﻿@model PortfolioSite.Models.ContactForm
+
+<content>
+    <p>Hello I am contact page</p>
+    <form method="post" action="@Url.Action("SubmitContactForm", "Contact")">
+        @Html.TextBoxFor(m => m.FromAddress)
+        @Html.TextBoxFor(m => m.Subject)
+        @Html.TextBoxFor(m => m.Message)
+        <label for="submit">Submit</label>
+        <input id="submit" type="submit" />
+    </form>
+</content>

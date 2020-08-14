@@ -12,22 +12,114 @@ body {
 
 .grid {
     display: grid;
-    grid-template-columns: 10% 80% 10%;
-    grid-template-rows: 100%;
-    width: 100vw;
+    grid-template-columns: 100%;
+    grid-template-rows: 10% 90%;
     height: 100vh;
 }
 
 .menu-container {
+    display: flex;
     grid-column: 1;
     grid-row: 1;
-    background-color: #88d1d0;
+    background-color: #104d7a;
 }
 
 .menu-item {
-    margin: 5px;
+    margin: 20px;
+}
+
+.menu-item > a {
+    text-decoration: none;
+    color: white;
 }
 
 .logo {
-    width: 180px;
+    width: 90px;
+    fill: #88d1d0;
+}
+
+.content {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.image-container {
+
+}
+
+.portfolio-image {
+    height: 200px;
+    object-fit: cover;
+}
+
+.portfolio-image-modal {
+    display: none;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+}
+
+.portfolio-image-large {
+    max-height: 100vh;
+    max-width: 100vw;
+}
+
+.modal-close-button {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    background: rgba(256, 256, 256, .8);
+    border-radius: 15px;
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+}
+
+.modal-left-button {
+    position: absolute;
+    left: 5%;
+    top: 50%;
+    background: rgba(256, 256, 256, .8);
+    border-radius: 15px;
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+}
+
+.modal-right-button {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    background: rgba(256, 256, 256, .8);
+    border-radius: 15px;
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+}
+
+.image-description {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 5%;
+    width: 400px;
+    background: rgba(256, 256, 256, .8);
+    border-radius: 15px;
+    padding: 5px;
+    text-align: left;
+    padding: 5px;
+    white-space: pre-line;
+    margin: 0px;
+    font-size: small;
+}
+
+.image-flexbox {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
 }
