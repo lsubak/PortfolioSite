@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PortfolioSite.Models;
-using PortfolioSite.Models.Enums;
 
 namespace PortfolioSite.Controllers
 {
@@ -9,9 +7,9 @@ namespace PortfolioSite.Controllers
         [Route("")]
         [Route("Home")]
         [Route("Home/Index")]
-        public IActionResult Index(SiteTheme siteTheme)
+        public IActionResult Index()
         {
-            return View(new SiteThemeModel(siteTheme));
+            return View();
         }
     }
 }

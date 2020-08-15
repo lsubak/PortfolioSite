@@ -1,12 +1,25 @@
 ﻿@model PortfolioSite.Models.ContactForm
 
 <content>
-    <p>Hello I am contact page</p>
-    <form method="post" action="@Url.Action("SubmitContactForm", "Contact")">
-        @Html.TextBoxFor(m => m.FromAddress)
-        @Html.TextBoxFor(m => m.Subject)
-        @Html.TextBoxFor(m => m.Message)
-        <label for="submit">Submit</label>
-        <input id="submit" type="submit" />
+    <form class="contact-form" method="post" action="@Url.Action("SubmitContactForm", "Contact")">
+        <label class="contact-label" for="Name">Name</label>
+        <div class="contact-item">
+            @Html.TextBoxFor(m => m.Name)
+        </div>
+        <label class="contact-label" for="FromAddress">Email</label>
+        <div class="contact-item">
+            @Html.TextBoxFor(m => m.FromAddress)
+        </div>
+        <label class="contact-label" for="Subject">Subject</label>
+        <div class="contact-item">
+            @Html.TextBoxFor(m => m.Subject)
+        </div>
+        <label class="contact-label" for="Message">Message</label>
+        <div class="contact-item-large">
+            @Html.TextBoxFor(m => m.Message)
+        </div>
+        <div class="contact-submit">
+            <input id="submit" type="submit" />
+        </div>
     </form>
 </content>
