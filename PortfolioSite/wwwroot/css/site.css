@@ -13,7 +13,7 @@ body {
 .grid {
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 10% 90%;
+    grid-template-rows: 70px;
     height: 100vh;
 }
 
@@ -22,6 +22,7 @@ body {
     grid-column: 1;
     grid-row: 1;
     background-color: #104d7a;
+    align-items: center;
 }
 
 .menu-item {
@@ -34,7 +35,7 @@ body {
 }
 
 .logo {
-    width: 90px;
+    width: 70px;
     fill: #88d1d0;
 }
 
@@ -119,6 +120,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     margin: 10px;
+    justify-content: center;
 }
 
 .contact-form {
@@ -132,13 +134,15 @@ body {
     width: 400px;
     background-color: #ededed;
     border-radius: 5px;
+    border-width: 1px;
 }
 
-.contact-item-large > input {
+.contact-item-large > textarea {
     width: 400px;
     height: 200px;
     background-color: #ededed;
     border-radius: 5px;
+    resize: none;
 }
 
 .contact-submit {
@@ -147,10 +151,13 @@ body {
 }
 
 .contact-submit > input {
-    background-color: #ededed;
+    background-color: #104d7a;
+    color: white;
     font-size: medium;
-    border-color: gray;
+    border-color: #104d7a;
     border-radius: 5px;
+    border-width: 0;
+    padding: 4px 6px 4px 6px;
 }
 
 .contact-label {

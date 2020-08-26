@@ -22,9 +22,13 @@ namespace PortfolioSite.Controllers
 
         [Route("Contact/Send")]
         [HttpPost]
-        public void SubmitContactForm(ContactForm form)
+        public IActionResult SubmitContactForm(ContactForm form)
         {
-            _mailSender.SendMail(form.FromAddress, form.Subject, form.Message);
+            if (_mailSender.SendMail(form.FromAddress, form.Subject, form.Message))
+            {
+                return View("EmailConfirmation");
+            }
+            return View("EmailError");
         }
     }
 }
