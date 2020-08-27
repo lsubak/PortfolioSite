@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using PortfolioSite.Internal;
+using PortfolioSite.Internal.AppSettings;
 using PortfolioSite.Models;
 
 namespace PortfolioSite.Controllers
@@ -8,9 +10,9 @@ namespace PortfolioSite.Controllers
     {
         private MailSender _mailSender;
 
-        public ContactController()
+        public ContactController(IOptions<EmailSettings> options)
         {
-            _mailSender = new MailSender();
+            _mailSender = new MailSender(options);
         }
 
         [Route("Contact")]

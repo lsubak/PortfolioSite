@@ -1,23 +1,28 @@
 ﻿using MailKit.Net.Smtp;
 using MailKit.Security;
+using Microsoft.Extensions.Options;
 using MimeKit;
+using PortfolioSite.Internal.AppSettings;
 using System;
 
 namespace PortfolioSite.Internal
 {
     public class MailSender
     {
-        private string _toAddress;
-        private string _user;
-        private string _password;
+        private EmailSettings _settings;
+
+        public MailSender(IOptions<EmailSettings> options)
+        {
+            _settings = options.Value;
+        }
 
         public bool SendMail(string fromAddress, string subject, string message)
         {
             //add input validation
 
             var mimeMessage = new MimeMessage();
-            mimeMessage.From.Add(new MailboxAddress(_toAddress));
-            mimeMessage.To.Add(new MailboxAddress(_toAddress));
+            mimeMessage.From.Add(new MailboxAddress(_settings.EmailUser));
+            mimeMessage.To.Add(new MailboxAddress(_settings.EmailUser));
             mimeMessage.Subject = subject;
             mimeMessage.Body = new TextPart("plain")
             {
@@ -32,8 +37,8 @@ namespace PortfolioSite.Internal
                     client.ServerCertificateValidationCallback = (s, c, h, e) => true;
                     client.CheckCertificateRevocation = false;
 
-                    client.Connect("smtp.office365.com", 587, SecureSocketOptions.StartTls);
-                    client.Authenticate(_user, _password);
+                    client.Connect(_settings.MailServerUrl, _settings.MailServerPort, SecureSocketOptions.StartTls);
+                    client.Authenticate(_settings.EmailUser, _settings.EmailPassword);
                     client.Send(mimeMessage);
                     client.Disconnect(true);
                     return true;

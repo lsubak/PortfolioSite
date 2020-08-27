@@ -1,4 +1,7 @@
 ﻿using Microsoft.Azure.Cosmos.Table;
+using Microsoft.Extensions.Options;
+using PortfolioSite.Internal.AppSettings;
+using System.Configuration;
 
 namespace PortfolioSite.Internal.Database
 {
@@ -10,8 +13,12 @@ namespace PortfolioSite.Internal.Database
         private CloudTable _contactMessagesTable;
         private CloudTable _errorsTable;
 
-        public DatabaseHelper()
+        private DatabaseSettings _settings;
+
+        public DatabaseHelper(IOptions<DatabaseSettings> options)
         {
+            _settings = options.Value;
+
             _storageAccount = CloudStorageAccount.Parse(_connectionString);
             _tableClient = _storageAccount.CreateCloudTableClient(new TableClientConfiguration());
             
