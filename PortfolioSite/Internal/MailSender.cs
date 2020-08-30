@@ -3,6 +3,8 @@ using MailKit.Security;
 using Microsoft.Extensions.Options;
 using MimeKit;
 using PortfolioSite.Internal.AppSettings;
+using PortfolioSite.Internal.Database;
+using PortfolioSite.Models;
 using System;
 
 namespace PortfolioSite.Internal
@@ -10,23 +12,26 @@ namespace PortfolioSite.Internal
     public class MailSender
     {
         private EmailSettings _settings;
+        private IDatabaseService _dbService;
 
-        public MailSender(IOptions<EmailSettings> options)
+        public MailSender(IOptions<EmailSettings> options, IDatabaseService dbService)
         {
             _settings = options.Value;
+            _dbService = dbService;
         }
 
-        public bool SendMail(string fromAddress, string subject, string message)
+        public bool SendMail(ContactForm form)
         {
             //add input validation
+            _dbService.SaveContactMessage(form);
 
             var mimeMessage = new MimeMessage();
-            mimeMessage.From.Add(new MailboxAddress(_settings.EmailUser));
+            mimeMessage.From.Add(new MailboxAddress(form.FromAddress, _settings.EmailUser));
             mimeMessage.To.Add(new MailboxAddress(_settings.EmailUser));
-            mimeMessage.Subject = subject;
+            mimeMessage.Subject = $"{form.Name} - {form.Subject}";
             mimeMessage.Body = new TextPart("plain")
             {
-                Text = message
+                Text = form.Message
             };
 
             try

@@ -116,6 +116,14 @@ body {
     font-size: small;
 }
 
+.image-description > a {
+    color: black;
+}
+
+.image-description > a:visited {
+    color: black;
+}
+
 .image-flexbox {
     display: flex;
     flex-wrap: wrap;

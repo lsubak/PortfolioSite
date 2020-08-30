@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Options;
 using PortfolioSite.Internal;
 using PortfolioSite.Internal.AppSettings;
+using PortfolioSite.Internal.Database;
 using PortfolioSite.Models;
 
 namespace PortfolioSite.Controllers
@@ -10,9 +11,9 @@ namespace PortfolioSite.Controllers
     {
         private MailSender _mailSender;
 
-        public ContactController(IOptions<EmailSettings> options)
+        public ContactController(IOptions<EmailSettings> options, IDatabaseService dbService)
         {
-            _mailSender = new MailSender(options);
+            _mailSender = new MailSender(options, dbService);
         }
 
         [Route("Contact")]
@@ -26,7 +27,7 @@ namespace PortfolioSite.Controllers
         [HttpPost]
         public IActionResult SubmitContactForm(ContactForm form)
         {
-            if (_mailSender.SendMail(form.FromAddress, form.Subject, form.Message))
+            if (_mailSender.SendMail(form))
             {
                 return View("EmailConfirmation");
             }

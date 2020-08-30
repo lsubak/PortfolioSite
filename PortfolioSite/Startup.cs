@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PortfolioSite.Internal.AppSettings;
+using PortfolioSite.Internal.Database;
 
 namespace PortfolioSite
 {
@@ -27,6 +28,8 @@ namespace PortfolioSite
             services.AddOptions();
             services.Configure<EmailSettings>(options => _configuration.GetSection("EmailSettings").Bind(options));
             services.Configure<DatabaseSettings>(options => _configuration.GetSection("DatabaseSettings").Bind(options));
+
+            services.AddScoped<IDatabaseService, DatabaseService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
