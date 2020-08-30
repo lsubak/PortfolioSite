@@ -2,8 +2,8 @@
 using Microsoft.Extensions.Options;
 using PortfolioSite.Internal;
 using PortfolioSite.Internal.AppSettings;
-using PortfolioSite.Internal.Database;
 using PortfolioSite.Models;
+using System;
 
 namespace PortfolioSite.Controllers
 {
@@ -11,9 +11,9 @@ namespace PortfolioSite.Controllers
     {
         private MailSender _mailSender;
 
-        public ContactController(IOptions<EmailSettings> options, IDatabaseService dbService)
+        public ContactController(IOptions<EmailSettings> options)
         {
-            _mailSender = new MailSender(options, dbService);
+            _mailSender = new MailSender(options);
         }
 
         [Route("Contact")]

@@ -4,8 +4,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using PortfolioSite.Internal.AppSettings;
-using PortfolioSite.Internal.Database;
+using Serilog;
 
 namespace PortfolioSite
 {
@@ -16,6 +17,12 @@ namespace PortfolioSite
         public Startup(IConfiguration configuration)
         {
             _configuration = configuration;
+
+            var logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(configuration)
+                .CreateLogger();
+
+            Log.Logger = logger;
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -27,9 +34,13 @@ namespace PortfolioSite
 
             services.AddOptions();
             services.Configure<EmailSettings>(options => _configuration.GetSection("EmailSettings").Bind(options));
-            services.Configure<DatabaseSettings>(options => _configuration.GetSection("DatabaseSettings").Bind(options));
 
-            services.AddScoped<IDatabaseService, DatabaseService>();
+            services.AddLogging(logging =>
+            {
+                logging.AddConfiguration(_configuration.GetSection("Logging"));
+                logging.AddConsole();
+                logging.AddSerilog(Log.Logger);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
