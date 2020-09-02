@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using PortfolioSite.Internal;
 using PortfolioSite.Internal.AppSettings;
 using PortfolioSite.Models;
-using System;
+using PortfolioSite.Models.Enums;
 
 namespace PortfolioSite.Controllers
 {
@@ -11,9 +12,9 @@ namespace PortfolioSite.Controllers
     {
         private MailSender _mailSender;
 
-        public ContactController(IOptions<EmailSettings> options)
+        public ContactController(IOptions<EmailSettings> options, ILogger<MailSender> logger)
         {
-            _mailSender = new MailSender(options);
+            _mailSender = new MailSender(options, logger);
         }
 
         [Route("Contact")]
@@ -27,11 +28,16 @@ namespace PortfolioSite.Controllers
         [HttpPost]
         public IActionResult SubmitContactForm(ContactForm form)
         {
-            if (_mailSender.SendMail(form))
+            switch (_mailSender.SendMail(form))
             {
-                return View("EmailConfirmation");
+                case ContactReturnView.EmailConfirmation:
+                    return View("EmailConfirmation");
+                case ContactReturnView.EmailInvalidError:
+                    return View("EmailInvalidError");
+                case ContactReturnView.EmailError:
+                default:
+                    return View("EmailError");
             }
-            return View("EmailError");
         }
     }
 }
