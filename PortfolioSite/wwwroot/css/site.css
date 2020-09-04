@@ -12,15 +12,12 @@ body {
 
 .grid {
     display: grid;
-    grid-template-columns: 100%;
     grid-template-rows: 70px;
     height: 100vh;
 }
 
 .menu-container {
     display: flex;
-    grid-column: 1;
-    grid-row: 1;
     background-color: #104d7a;
     align-items: center;
 }
@@ -49,11 +46,8 @@ body {
     flex-wrap: wrap;
     margin: 10px;
     justify-content: center;
+    align-content: center;
     max-width: 1500px;
-    width: 100%;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
 }
 
 .image-container {
