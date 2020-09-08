@@ -44,10 +44,11 @@ body {
 .image-flexbox {
     display: flex;
     flex-wrap: wrap;
-    margin: 10px;
     justify-content: center;
     align-content: center;
     max-width: 1500px;
+    width: 100%;
+    margin: 10px auto;
 }
 
 .image-container {
