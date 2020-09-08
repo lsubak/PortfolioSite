@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using PortfolioSite.Internal.AppSettings;
+using PortfolioSite.Internal.MailSending;
 using Serilog;
 
 namespace PortfolioSite
@@ -35,6 +36,8 @@ namespace PortfolioSite
 
             services.AddOptions();
             services.Configure<EmailSettings>(options => _configuration.GetSection("EmailSettings").Bind(options));
+            services.AddScoped<ISmtpClient, SmtpClientWrapper>();
+            services.AddScoped<IMailSender, MailSender>();
 
             services.AddLogging(logging =>
             {

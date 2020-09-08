@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using PortfolioSite.Internal;
-using PortfolioSite.Internal.AppSettings;
+using PortfolioSite.Internal.MailSending;
 using PortfolioSite.Models;
 using PortfolioSite.Models.Enums;
 
@@ -10,11 +7,11 @@ namespace PortfolioSite.Controllers
 {
     public class ContactController : Controller
     {
-        private MailSender _mailSender;
+        private readonly IMailSender _mailSender;
 
-        public ContactController(IOptions<EmailSettings> options, ILogger<MailSender> logger)
+        public ContactController(IMailSender mailSender)
         {
-            _mailSender = new MailSender(options, logger);
+            _mailSender = mailSender;
         }
 
         [Route("Contact")]
