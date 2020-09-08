@@ -226,21 +226,27 @@
 @section scripts
 {
     <script>
-        $(document).ready(function () {
-            $(".portfolio-image").click(function () {
-                $("#" + "modal-" + this.id).css("display", "block");
-            });
-            $(".modal-close-button").click(function () {
-                $("#" + this.id).parent().css("display", "none");
-            })
-            $(".modal-left-button").click(function () {
-                $("#" + this.id).closest(".portfolio-image-modal").prev().css("display", "block");
-                $("#" + this.id).closest(".portfolio-image-modal").css("display", "none");
-            });
-            $(".modal-right-button").click(function () {
-                $("#" + this.id).closest(".portfolio-image-modal").next().css("display", "block");
-                $("#" + this.id).closest(".portfolio-image-modal").css("display", "none");
-            });
-        })
+        document.querySelectorAll(".portfolio-image").forEach(img =>
+            img.onclick = function () {
+                document.querySelector("#" + "modal-" + this.id).style.display = "block";
+            }
+        )
+        document.querySelectorAll(".modal-close-button").forEach(img =>
+            img.onclick = function () {
+                document.querySelector("#" + this.id).parentNode.style.display = "none";
+            }
+        )
+        document.querySelectorAll(".modal-left-button").forEach(img =>
+            img.onclick = function () {
+                document.querySelector("#" + this.id).closest(".portfolio-image-modal").previousElementSibling.style.display = "block";
+                document.querySelector("#" + this.id).closest(".portfolio-image-modal").style.display = "none";
+            }
+        )
+        document.querySelectorAll(".modal-right-button").forEach(img =>
+            img.onclick = function () {
+                document.querySelector("#" + this.id).closest(".portfolio-image-modal").nextElementSibling.style.display = "block";
+                document.querySelector("#" + this.id).closest(".portfolio-image-modal").style.display = "none";
+            }
+        )
     </script>
 }
