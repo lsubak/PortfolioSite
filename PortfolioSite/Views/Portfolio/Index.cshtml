@@ -22,22 +22,22 @@
             <img id="img07" class="portfolio-image" src="~/images/portfolio-thumb/saul_bass_style_poster.jpg" />
         </div>
         <div class="image-container">
-            <img id="img08" class="portfolio-image" src="~/images/portfolio-thumb/oldspice_specad_ad1.jpg" />
+            <img id="img08" class="portfolio-image" src="~/images/portfolio-thumb/oldspice_specad1.jpg" />
         </div>
         <div class="image-container">
-            <img id="img09" class="portfolio-image" src="~/images/portfolio-thumb/oldspice_specad_ad2.jpg" />
+            <img id="img09" class="portfolio-image" src="~/images/portfolio-thumb/oldspice_specad2.jpg" />
         </div>
         <div class="image-container">
             <img id="img10" class="portfolio-image" src="~/images/portfolio-thumb/earth_day_poster.jpg" />
         </div>
         <div class="image-container">
-            <img id="img11" class="portfolio-image" src="~/images/portfolio-thumb/adcouncil_ad1.jpg" />
+            <img id="img11" class="portfolio-image" src="~/images/portfolio-thumb/adcouncil1.jpg" />
         </div>
         <div class="image-container">
-            <img id="img12" class="portfolio-image" src="~/images/portfolio-thumb/adcouncil_ad2.jpg" />
+            <img id="img12" class="portfolio-image" src="~/images/portfolio-thumb/adcouncil2.jpg" />
         </div>
         <div class="image-container">
-            <img id="img13" class="portfolio-image" src="~/images/portfolio-thumb/adcouncil_ad3.jpg" />
+            <img id="img13" class="portfolio-image" src="~/images/portfolio-thumb/adcouncil3.jpg" />
         </div>
         <div class="image-container">
             <img id="img14" class="portfolio-image" src="~/images/portfolio-thumb/arthistory_spreads_spread1.jpg" />
@@ -120,7 +120,7 @@
 <div id="modal-img08" class="portfolio-image-modal">
     <img class="modal-left-button" id="left-button08" src="~/images/arrow-left.svg" />
     <img class="modal-close-button" id="close-button08" src="~/images/close.svg" />
-    <img class="portfolio-image-large" src="~/images/portfolio/oldspice_specad_ad1.png" />
+    <img class="portfolio-image-large" src="~/images/portfolio/oldspice_specad1.png" />
     <img class="modal-right-button" id="right-button08" src="~/images/arrow-right.svg" />
     <div class="image-description">Speculative ad series for Old Spice. Marketing aimed at new audience - women buying Old Spice for themselves.
         <b>Fonts:</b> TroubleMarker DEMO with explicit permission for portfolio use from <a href="https://pizzadude.dk">pizzadude.dk</a>
@@ -129,7 +129,7 @@
 <div id="modal-img09" class="portfolio-image-modal">
     <img class="modal-left-button" id="left-button09" src="~/images/arrow-left.svg" />
     <img class="modal-close-button" id="close-button09" src="~/images/close.svg" />
-    <img class="portfolio-image-large" src="~/images/portfolio/oldspice_specad_ad2.png" />
+    <img class="portfolio-image-large" src="~/images/portfolio/oldspice_specad2.png" />
     <img class="modal-right-button" id="right-button09" src="~/images/arrow-right.svg" />
     <div class="image-description">Speculative ad series for Old Spice. Marketing aimed at new audience - women buying Old Spice for themselves.
         <b>Fonts:</b> TroubleMarker DEMO with explicit permission for portfolio use from <a href="https://pizzadude.dk">pizzadude.dk</a>
@@ -147,7 +147,7 @@
 <div id="modal-img11" class="portfolio-image-modal">
     <img class="modal-left-button" id="left-button11" src="~/images/arrow-left.svg" />
     <img class="modal-close-button" id="close-button11" src="~/images/close.svg" />
-    <img class="portfolio-image-large" src="~/images/portfolio/adcouncil_ad1.png" />
+    <img class="portfolio-image-large" src="~/images/portfolio/adcouncil1.png" />
     <img class="modal-right-button" id="right-button11" src="~/images/arrow-right.svg" />
     <div class="image-description">Speculative ad series for the Ad Council - LGBT rights.
         <b>Fonts:</b> Chaparral Pro from <a href="https://fonts.adobe.com/">Adobe Fonts</a>, Ink Free from <a href="https://docs.microsoft.com/en-us/typography/font-list/">Microsoft Fonts</a>
@@ -157,7 +157,7 @@
 <div id="modal-img12" class="portfolio-image-modal">
     <img class="modal-left-button" id="left-button12" src="~/images/arrow-left.svg" />
     <img class="modal-close-button" id="close-button12" src="~/images/close.svg" />
-    <img class="portfolio-image-large" src="~/images/portfolio/adcouncil_ad2.png" />
+    <img class="portfolio-image-large" src="~/images/portfolio/adcouncil2.png" />
     <img class="modal-right-button" id="right-button12" src="~/images/arrow-right.svg" />
     <div class="image-description">Speculative ad series for the Ad Council - LGBT rights.
         <b>Fonts:</b> Chaparral Pro from <a href="https://fonts.adobe.com/">Adobe Fonts</a>, Ink Free from <a href="https://docs.microsoft.com/en-us/typography/font-list/">Microsoft Fonts</a>
@@ -167,7 +167,7 @@
 <div id="modal-img13" class="portfolio-image-modal">
     <img class="modal-left-button" id="left-button13" src="~/images/arrow-left.svg" />
     <img class="modal-close-button" id="close-button13" src="~/images/close.svg" />
-    <img class="portfolio-image-large" src="~/images/portfolio/adcouncil_ad3.png" />
+    <img class="portfolio-image-large" src="~/images/portfolio/adcouncil3.png" />
     <img class="modal-right-button" id="right-button13" src="~/images/arrow-right.svg" />
     <div class="image-description">Speculative ad series for the Ad Council - LGBT rights.
         <b>Fonts:</b> Chaparral Pro from <a href="https://fonts.adobe.com/">Adobe Fonts</a>, Ink Free from <a href="https://docs.microsoft.com/en-us/typography/font-list/">Microsoft Fonts</a>
@@ -226,21 +226,27 @@
 @section scripts
 {
     <script>
-        $(document).ready(function () {
-            $(".portfolio-image").click(function () {
-                $("#" + "modal-" + this.id).css("display", "block");
-            });
-            $(".modal-close-button").click(function () {
-                $("#" + this.id).parent().css("display", "none");
-            })
-            $(".modal-left-button").click(function () {
-                $("#" + this.id).closest(".portfolio-image-modal").prev().css("display", "block");
-                $("#" + this.id).closest(".portfolio-image-modal").css("display", "none");
-            });
-            $(".modal-right-button").click(function () {
-                $("#" + this.id).closest(".portfolio-image-modal").next().css("display", "block");
-                $("#" + this.id).closest(".portfolio-image-modal").css("display", "none");
-            });
-        })
+        document.querySelectorAll(".portfolio-image").forEach(img =>
+            img.onclick = function () {
+                document.querySelector("#" + "modal-" + this.id).style.display = "block";
+            }
+        )
+        document.querySelectorAll(".modal-close-button").forEach(img =>
+            img.onclick = function () {
+                document.querySelector("#" + this.id).parentNode.style.display = "none";
+            }
+        )
+        document.querySelectorAll(".modal-left-button").forEach(img =>
+            img.onclick = function () {
+                document.querySelector("#" + this.id).closest(".portfolio-image-modal").previousElementSibling.style.display = "block";
+                document.querySelector("#" + this.id).closest(".portfolio-image-modal").style.display = "none";
+            }
+        )
+        document.querySelectorAll(".modal-right-button").forEach(img =>
+            img.onclick = function () {
+                document.querySelector("#" + this.id).closest(".portfolio-image-modal").nextElementSibling.style.display = "block";
+                document.querySelector("#" + this.id).closest(".portfolio-image-modal").style.display = "none";
+            }
+        )
     </script>
 }

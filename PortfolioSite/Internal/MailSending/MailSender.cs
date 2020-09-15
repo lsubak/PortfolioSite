@@ -1,6 +1,4 @@
-﻿using MailKit.Net.Smtp;
-using MailKit.Security;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MimeKit;
 using Newtonsoft.Json;
@@ -10,19 +8,21 @@ using PortfolioSite.Models.Enums;
 using System;
 using System.Text.RegularExpressions;
 
-namespace PortfolioSite.Internal
+namespace PortfolioSite.Internal.MailSending
 {
-    public class MailSender
+    public class MailSender : IMailSender
     {
         // Pulled from https://emailregex.com/
         private readonly Regex _emailRegex = new Regex(@"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$");
         private readonly EmailSettings _settings;
         private readonly ILogger<MailSender> _logger;
+        private readonly ISmtpClient _smtpClient;
 
-        public MailSender(IOptions<EmailSettings> options, ILogger<MailSender> logger)
+        public MailSender(IOptions<EmailSettings> options, ILogger<MailSender> logger, ISmtpClient smtpClient)
         {
             _settings = options.Value;
             _logger = logger;
+            _smtpClient = smtpClient;
         }
 
         public ContactReturnView SendMail(ContactForm form)
@@ -41,14 +41,8 @@ namespace PortfolioSite.Internal
 
                 try
                 {
-                    using (var client = new SmtpClient())
-                    {
-                        client.Connect(_settings.MailServerUrl, _settings.MailServerPort, SecureSocketOptions.StartTls);
-                        client.Authenticate(_settings.EmailUser, _settings.EmailPassword);
-                        client.Send(mimeMessage);
-                        client.Disconnect(true);
-                        return ContactReturnView.EmailConfirmation;
-                    }
+                    _smtpClient.Send(mimeMessage);
+                    return ContactReturnView.EmailConfirmation;
                 }
                 catch (Exception e)
                 {

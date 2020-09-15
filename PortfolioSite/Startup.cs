@@ -1,11 +1,13 @@
 using System.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using PortfolioSite.Internal.AppSettings;
+using PortfolioSite.Internal.MailSending;
 using Serilog;
 
 namespace PortfolioSite
@@ -34,12 +36,20 @@ namespace PortfolioSite
 
             services.AddOptions();
             services.Configure<EmailSettings>(options => _configuration.GetSection("EmailSettings").Bind(options));
+            services.AddScoped<ISmtpClient, SmtpClientWrapper>();
+            services.AddScoped<IMailSender, MailSender>();
 
             services.AddLogging(logging =>
             {
                 logging.AddConfiguration(_configuration.GetSection("Logging"));
                 logging.AddConsole();
                 logging.AddSerilog(Log.Logger);
+            });
+
+            services.AddHttpsRedirection(options =>
+            {
+                options.RedirectStatusCode = StatusCodes.Status308PermanentRedirect;
+                options.HttpsPort = 443;
             });
         }
 
