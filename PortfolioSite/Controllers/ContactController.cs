@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PortfolioSite.Internal.MailSending;
 using PortfolioSite.Models;
-using PortfolioSite.Models.Enums;
 
 namespace PortfolioSite.Controllers
 {
@@ -23,18 +22,29 @@ namespace PortfolioSite.Controllers
 
         [Route("Contact/Send")]
         [HttpPost]
-        public IActionResult SubmitContactForm(ContactForm form)
+        public IActionResult SubmitContactForm([FromBody]ContactForm form)
         {
-            switch (_mailSender.SendMail(form))
-            {
-                case ContactReturnView.EmailConfirmation:
-                    return View("EmailConfirmation");
-                case ContactReturnView.EmailInvalidError:
-                    return View("EmailInvalidError");
-                case ContactReturnView.EmailError:
-                default:
-                    return View("EmailError");
-            }
+            var responseView = _mailSender.SendMail(form);
+            return Json(responseView.ToString());
         }
+
+        [Route("Contact/EmailConfirmation")]
+        public IActionResult EmailConfirmation()
+        {
+            return View("EmailConfirmation");
+        }
+
+        [Route("Contact/EmailInvalidError")]
+        public IActionResult EmailInvalidError()
+        {
+            return View("EmailInvalidError");
+        }
+
+        [Route("Contact/EmailError")]
+        public IActionResult EmailError()
+        {
+            return View("EmailError");
+        }
+     
     }
 }

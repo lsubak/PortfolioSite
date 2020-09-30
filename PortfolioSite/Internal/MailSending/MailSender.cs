@@ -27,11 +27,11 @@ namespace PortfolioSite.Internal.MailSending
 
         public ContactReturnView SendMail(ContactForm form)
         {
-            var match = _emailRegex.Match(form.FromAddress);
+            var match = _emailRegex.Match(form.Email);
             if (match.Success)
             {
                 var mimeMessage = new MimeMessage();
-                mimeMessage.From.Add(new MailboxAddress(form.FromAddress, _settings.EmailUser));
+                mimeMessage.From.Add(new MailboxAddress(form.Email, _settings.EmailUser));
                 mimeMessage.To.Add(new MailboxAddress("Laura", _settings.EmailUser));
                 mimeMessage.Subject = $"{form.Name} - {form.Subject}";
                 mimeMessage.Body = new TextPart("plain")

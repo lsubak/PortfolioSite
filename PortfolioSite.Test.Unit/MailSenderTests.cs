@@ -35,7 +35,7 @@ namespace PortfolioSite.Test.Unit
             });
             DefaultContactForm = new ContactForm()
             {
-                FromAddress = "from@test.com",
+                Email = "from@test.com",
                 Message = "test message",
                 Name = "test name",
                 Subject = "test subject"
@@ -61,7 +61,7 @@ namespace PortfolioSite.Test.Unit
         //[TestCase("very.”(),:;<>[]”.VERY.”very@\\ \"very”.unusual@strange.example.com")]
         public void MailSender_ValidEmail_ReturnsConfirmation(string email)
         {
-            DefaultContactForm.FromAddress = email;
+            DefaultContactForm.Email = email;
             var mailSender = new MailSender(DefaultSettings, LoggerMock.Object, ClientMock.Object);
 
             Assert.AreEqual(ContactReturnView.EmailConfirmation, mailSender.SendMail(DefaultContactForm));
@@ -89,7 +89,7 @@ namespace PortfolioSite.Test.Unit
         [TestCase("this\\ is\"really\"not\\allowed@example.com")]
         public void MailSender_InvalidEmail_ReturnsInvalidEmailError(string email)
         {
-            DefaultContactForm.FromAddress = email;
+            DefaultContactForm.Email = email;
             var mailSender = new MailSender(DefaultSettings, LoggerMock.Object, ClientMock.Object);
 
             Assert.AreEqual(ContactReturnView.EmailInvalidError, mailSender.SendMail(DefaultContactForm)); ;

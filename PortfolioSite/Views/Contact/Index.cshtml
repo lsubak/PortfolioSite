@@ -1,25 +1,11 @@
 ﻿@model PortfolioSite.Models.ContactForm
 
 <content>
-    <form class="contact-form" method="post" action="@Url.Action("SubmitContactForm", "Contact")">
-        <label class="contact-label" for="Name">Name</label>
-        <div class="contact-item">
-            @Html.TextBoxFor(m => m.Name)
-        </div>
-        <label class="contact-label" for="FromAddress">Email</label>
-        <div class="contact-item">
-            @Html.TextBoxFor(m => m.FromAddress)
-        </div>
-        <label class="contact-label" for="Subject">Subject</label>
-        <div class="contact-item">
-            @Html.TextBoxFor(m => m.Subject)
-        </div>
-        <label class="contact-label" for="Message">Message</label>
-        <div class="contact-item-large">
-            @Html.TextAreaFor(m => m.Message)
-        </div>
-        <div class="contact-submit">
-            <input id="submit" type="submit" />
-        </div>
-    </form>
+    <div id="contact_form_container"></div>
 </content>
+@section scripts
+{
+<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+<script src="/js/contact_form.js" type="text/babel"></script>
+}

@@ -138,19 +138,20 @@ body {
     margin: 20px;
 }
 
-.contact-item > input {
+.contact-item {
     width: 400px;
     background-color: #ededed;
     border-radius: 5px;
     border-width: 1px;
 }
 
-.contact-item-large > textarea {
+.contact-item-large {
     width: 400px;
     height: 200px;
     background-color: #ededed;
     border-radius: 5px;
     resize: none;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .contact-submit {
