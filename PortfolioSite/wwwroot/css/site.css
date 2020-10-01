@@ -127,6 +127,10 @@ content {
     z-index: 3;
 }
 
+.modal-close-button:hover {
+    background: rgba(256, 256, 256, 1.0);
+}
+
 .modal-left-button {
     display: none;
     position: fixed;
@@ -140,6 +144,10 @@ content {
     z-index: 3;
 }
 
+.modal-left-button:hover {
+    background: rgba(256, 256, 256, 1.0);
+}
+
 .modal-right-button {
     display: none;
     position: fixed;
@@ -151,6 +159,10 @@ content {
     height: 30px;
     padding: 5px;
     z-index: 3;
+}
+
+.modal-right-button:hover {
+    background: rgba(256, 256, 256, 1.0);
 }
 
 .contact-form {
