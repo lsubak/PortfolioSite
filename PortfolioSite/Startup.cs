@@ -45,12 +45,6 @@ namespace PortfolioSite
                 logging.AddConsole();
                 logging.AddSerilog(Log.Logger);
             });
-
-            services.AddHttpsRedirection(options =>
-            {
-                options.RedirectStatusCode = StatusCodes.Status308PermanentRedirect;
-                options.HttpsPort = 443;
-            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
